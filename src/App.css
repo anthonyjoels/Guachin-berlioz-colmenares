@@ -2,6 +2,71 @@
   text-align: center;
 }
 
+.barra{display: flex;
+  align-content: space-around;
+height: 100px;
+}
+
+
+
+.header{display: flex;}
+.titulo_header{display: flex;
+  flex-wrap: nowrap;
+  
+
+font-size: 20px;
+text-decoration: solid;
+text-decoration: underline;
+font-weight: 100;}
+
+
+.logo_header{width: 60px; height: 60px; }
+
+.nav_links{display: flex;
+  align-content: flex-end;
+  padding-left: 10px;
+  padding-right: 10px;
+font-size: 20px;
+text-decoration: solid;
+text-decoration: underline;
+font-weight: 1000;
+justify-content: end;
+text-align: end;}
+
+.barra_nav{display: flex;
+  justify-content: center;
+  justify-items: center;}
+
+.barra_header{display: flex;
+  justify-content: center;
+  justify-items: center;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
