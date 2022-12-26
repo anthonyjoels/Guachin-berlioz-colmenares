@@ -1,6 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import CartWidget from '../CartWidget'
+import LogoGatos from '../components/LogoGatos';
+import CartWidget from '../CartWidget';
+
 
 function TextLinkExample() {
   return (
@@ -10,10 +12,12 @@ function TextLinkExample() {
 
         <div className='row barra'>
         
-        
-        <section  className=" col-sm-12 col-md-12 col-lg-1 guachin barra_header  ">
-        <CartWidget/>
+        <section className="col-sm-12 col-md-12 col-lg-1 barra_header  ">
+          
+            <LogoGatos/>
+            
         </section>
+        
 
         <section className="col-sm-12 col-md-12 col-lg-3 barra_header  ">
           
@@ -38,9 +42,12 @@ function TextLinkExample() {
             <li className="nav_links ">Berlioz</li>
         </ul>
        </nav>
-  
-    </section>
        
+        <CartWidget/>
+        
+        
+    </section>
+        
         
         </div>
       </Container>
