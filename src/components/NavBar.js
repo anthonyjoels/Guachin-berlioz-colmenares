@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import LogoGatos from '../components/LogoGatos';
 import CartWidget from '../CartWidget';
-
+import { NavLink } from 'react-router-dom';
 
 function TextLinkExample() {
   return (
@@ -33,13 +33,20 @@ function TextLinkExample() {
         <section className="col-sm-12 col-md-12 col-lg-1 sin_padding header">
        <nav >
         <ul className="barra_nav ">
-            <li className="nav_links "> 
-                <a className="nav_letra nav-link  header_links " href="./index.html">Inicio</a>
+            <li className="nav_links ">
+               <NavLink activeclassname="inactive" className="inactive" to="/">Inicio</NavLink> 
+             </li>
+            
+            <li className="nav_links ">
+               <NavLink activeclassname="active" className="inactive" to="/category/men's clothing">Hombre</NavLink> 
             </li>
             
-            <li className="nav_links "> Guachin</li>
-            
-            <li className="nav_links ">Berlioz</li>
+            <li className="nav_links ">
+              <NavLink activeclassname="active" className="inactive" to="/category/women's clothing">Mujer</NavLink> 
+            </li>
+            <li className="nav_links ">
+              <NavLink activeclassname="active" className="inactive" to="/category/jewelery">Joyeria</NavLink> 
+            </li>
         </ul>
        </nav>
        
