@@ -1,71 +1,61 @@
-import itemCount from './ItemCount/ItemCount'
+
 import { useEffect, useState } from 'react';
 import ItemList from './ItemList/ItemList';
-import { useParams } from 'react-router-dom';
+import { Form, useParams } from 'react-router-dom';
+import Loading from '../components/Loading/Loading';
+import {getFirestore, getDocs, collection, query, where} from "firebase/firestore"
 
 
 const ItemListContainer = ({greeting}) => {
     const [products, setProducts] = useState ([]);
+   
+    const [Loading, setLoading] = useState(true);
     const{category} = useParams();
-    const [filteredProducts, setFilteredProducts] = useState([]);
-    const getProducts = fetch ('https://fakestoreapi.com/products',{
-        method: 'GET',
+    
+    const ComponentToRender = Loading === true ? Loading : ItemList;
+
+    const getProducts = () => {
+        const db = getFirestore();
+        const querySnapshot = collection(db, "items");
+
+
+       
+            if(category){
+                const newCofiguration = query (querySnapshot, where ("categoryId", "==", category));
+                getDocs(newCofiguration)
+            .then((response)=> {
+                const data = response.docs.map ((doc)=>{
+                    return {id: doc.id , ...doc.data()};
+                })
+                console.log (data);
+                setProducts (data);
+            }) 
+            .catch(error=> console.log (error));
+            } else {
+                getDocs(querySnapshot)
+            .then((response)=> {
+                const data = response.docs.map ((doc)=>{
+                    return {id: doc.id , ...doc.data()};
+                })
+                console.log (data);
+                setProducts (data);
+            }) 
+            .catch(error=> console.log (error));
+            }
+            
      
-        })
-
-
-    useEffect(()=> {
-        if(category){const removeCharacters = category?.includes ('%20') ? category.replace('%20', ''): category
-        const filterProducts = products.filter((product)=> product.category === removeCharacters)
-        setFilteredProducts(filterProducts)}
-        
-    },[category])
-
-
-
-
-
-
-
+       
+    };
     
-    
-    const addProduct =fetch ('https://fakestoreapi.com/products',{
-        method: 'POST',
-        body: JSON.stringify({
-            title: 'test product',
-            price: 13.5,
-            description: 'lorem ipsum set',
-            image: 'https://i.pravatar.cc',
-            category : 'electronic',
-        })
-    });
+ 
 
     useEffect(()=>{
-    getProducts
-    .then((res) =>{
-        return res.json()
-    })
-    .then((response)=> {
-        setProducts(response);
-    })
-    .catch((error) => console.log(error));},[])
-
-    useEffect (()=> {
-        addProduct
-        .then((response)=>response.json)
-        .then((productoCreado)=> {
-            console.log(productoCreado);
-        })
-    })
+    getProducts();
+    }, [category]);
     
 
     console.log(greeting)
-    return (
-        <div>
-            
-            <ItemList productos={category ? filteredProducts : products} />
-            <h1> {greeting}</h1>
-        </div>
-    );
+    return 
+        <div>{Loading ? <Loading />  :  <ItemList productos={products} /> } </div>;
 };
 export default ItemListContainer;

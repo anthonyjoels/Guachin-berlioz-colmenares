@@ -38,14 +38,14 @@ function TextLinkExample() {
              </li>
             
             <li className="nav_links ">
-               <NavLink activeclassname="active" className="inactive" to="/category/men's clothing">Hombre</NavLink> 
+               <NavLink activeclassname="active" className="inactive" to="/category/hombre">Hombre</NavLink> 
             </li>
             
             <li className="nav_links ">
-              <NavLink activeclassname="active" className="inactive" to="/category/women's clothing">Mujer</NavLink> 
+              <NavLink activeclassname="active" className="inactive" to="/category/mujer">Mujer</NavLink> 
             </li>
             <li className="nav_links ">
-              <NavLink activeclassname="active" className="inactive" to="/category/jewelery">Joyeria</NavLink> 
+              <NavLink activeclassname="active" className="inactive" to="/category/electronica">Electronica</NavLink> 
             </li>
         </ul>
        </nav>
